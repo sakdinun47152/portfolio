@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import VideoBackground from "@/components/video-bg";
+import Footer from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,7 @@ export default function RootLayout({
           <VideoBackground>
             <Header />
             {children}
-          </VideoBackground>
+          </VideoBackground> 
         </main>
       </body>
     </html>

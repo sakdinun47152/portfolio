@@ -1,41 +1,160 @@
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faComment } from "@fortawesome/free-solid-svg-icons";
+import "../app/globals.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome, faUser, faLightbulb, faArchive, faContactBook } from "@fortawesome/free-solid-svg-icons";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export default function Header() {
   return (
-    <div className="fixed top-0 flex justify-between items-center w-full h-16 px-8">
-      <div className="flex flex-row">
-        <h1 className="flex text-md text-transparent bg-gradient-to-r from-red-700 via-blue-700 to-red-700 bg-clip-text transition-all duration-100 bg-animated-gradient">
+    <div
+      className="
+        fixed
+        top-0
+        flex
+        justify-between
+        items-center
+        w-full
+        h-16
+        px-8
+      "
+    >
+      <div
+        className="
+          flex
+          flex-row
+        "
+      >
+        <h1
+          className="
+            flex
+            text-md
+            bg-linear-to-r
+            from-white
+            via-blue-700
+            to-white
+            bg-clip-text
+            text-transparent
+            bg-animated-gradient
+            transition-all duration-100
+            cursor-pointer
+          "
+        >
           @daniel.sakdinun
         </h1>
-
-        <Link className="flex flex-row justify-center ml-3 px-3 hover:text-transparent hover:bg-gradient-to-r hover:from-red-700 hover:via-blue-700 hover:to-red-700 hover:bg-clip-text transition-all duration-100 bg-animated-gradient outline-none" href="/">
-          Home
-        </Link>
-
-        <Link className="flex flex-row justify-center ml-3 px-3 hover:text-transparent hover:bg-gradient-to-r hover:from-red-700 hover:via-blue-700 hover:to-red-700 hover:bg-clip-text transition-all duration-100 bg-animated-gradient outline-none" href="/about">
-            About
-        </Link>
-
-        <Link className="flex flex-row justify-center ml-3 px-3 hover:text-transparent hover:bg-gradient-to-r hover:from-red-700 hover:via-blue-700 hover:to-red-700 hover:bg-clip-text transition-all duration-100 bg-animated-gradient outline-none" href="/projects">
-          Projects
-        </Link>
-
-        <Link className="flex flex-row justify-center ml-3 px-3 hover:text-transparent hover:bg-gradient-to-r hover:from-red-700 hover:via-blue-700 hover:to-red-700 hover:bg-clip-text transition-all duration-100 bg-animated-gradient outline-none" href="/blog">
-          Blog
-        </Link>
-
-        <Link className="flex flex-row justify-center ml-3 px-3 hover:text-transparent hover:bg-gradient-to-r hover:from-red-700 hover:via-blue-700 hover:to-red-700 hover:bg-clip-text transition-all duration-100 bg-animated-gradient outline-none" href="/contact">
-          Contact
-        </Link>
       </div>
 
-      <button className="flex flex-row justify-center items-center bg-blue-700 w-40 h-10 mr-8 rounded-md font-semibold text-white cursor-pointer hover:w-60 hover:bg-green-500 transition-all duration-500">
-        <FontAwesomeIcon icon={faComment} className="w-4 mr-3" />
-        Let's Talk
-      </button>
+      <div
+        className="
+          flex
+          flex-row
+          justify-center
+          items-center
+          h-full
+        "
+      >
+        <HeaderLink
+          icon={faHome}
+          text="Home"
+          path="/"
+          colors={[
+            "from-red-700",
+            "via-blue-700",
+            "to-red-700"
+          ]}
+        />
+
+        <HeaderLink
+          icon={faUser}
+          text="About"
+          path="/about"
+          colors={[
+            "from-red-700",
+            "via-blue-700",
+            "to-red-700"
+          ]}
+        />
+
+        <HeaderLink
+          icon={faLightbulb}
+          text="Skills"
+          path="/skills"
+          colors={[
+            "from-red-700",
+            "via-blue-700",
+            "to-red-700"
+          ]}
+        />
+
+        <HeaderLink
+          icon={faArchive}
+          text="Projects"
+          path="/projects"
+          colors={[
+            "from-red-700",
+            "via-blue-700",
+            "to-red-700"
+          ]}
+        />
+
+        <HeaderLink
+          icon={faContactBook}
+          text="Contact"
+          path="/contact"
+          colors={[
+            "from-red-700",
+            "via-blue-700",
+            "to-red-700"
+          ]}
+        />
+      </div>
     </div>
   );
+}
+
+function HeaderLink({icon, text, path, colors}: Readonly<{icon:IconProp, text: string, path: string, colors: string[]}>) {
+  return(
+    <Link
+      className={`
+        group
+        relative
+        flex
+        flex-row
+        justify-center
+        items-center
+        w-16
+        h-full
+        outline-none
+      `}
+      href={path}
+    >
+          <FontAwesomeIcon
+            icon={icon}
+            className="
+              w-5
+              absolute
+              transform
+              group-hover:scale-50
+              group-hover:opacity-0
+              transition-all duration-300 ease-in-out
+            "
+          />
+          <p
+            className={`
+              hidden
+              opacity-0
+              bg-linear-to-r
+              `
+              + colors.join(" ") +
+              `
+              text-transparent
+              bg-clip-text
+              bg-animated-gradient
+              transition-all duration-500
+              group-hover:flex
+              group-hover:opacity-100
+            `}
+          >{text}</p>
+    </Link>
+  )
 }

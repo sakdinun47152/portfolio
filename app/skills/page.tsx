@@ -1,9 +1,9 @@
 import Content from "@/components/content";
 
-export default function Blog(){
+export default function Skills(){
     return (
         <Content>
-            Blog
+            Coming Soon
         </Content>
     );
 }
